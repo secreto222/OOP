@@ -6,38 +6,38 @@ import java.util.Collections;
 import java.awt.*;
 import java.awt.event.*;
 
-class Level1 extends Frame implements ActionListener{
+class Level3 extends Frame implements ActionListener{
 
     private static final long serialVersionUID = 1L;
     List<Integer> ngawur = new ArrayList<Integer>();
-    int acak[]= new int[10];
+    int acak[]= new int[30];
     public long waktu = 1000; //dijankan dalam waktu 1 detik
     int masukan=0;
     int sisa = 1;
-    int tersisa=24; //menghitung sisa klik
+    int tersisa=84; //menghitung sisa klik
     String kotak1="";
     String kotak2="";
     int giliran=0; //menghitung jumlah giliran
     boolean tidaktekan=true;
     int a=0;  //menguji bilangan yang sama sebanyak 2 kali
     int clicked=0; //menghitung jumlah klik
-    Label perhitungan = new Label("Sisa Klik : "+this.tersisa); 
+    Label perhitungan = new Label("Sisa Klik : "+this.tersisa);
     Label label = new Label("Jumlah Klik : "+ clicked);
-    Button[][] buttons = new Button[5][2];
+    Button[][] buttons = new Button[5][6];
     int matching=0;
     Bingkai tampil = new Bingkai();
 
-    Level1(Panel tengah,Panel selatan,Panel utara){
-        tampil.launch(2,5,selatan,tengah,utara);
+    Level3(Panel tengah,Panel selatan,Panel utara){
+        tampil.launch(6,5,selatan,tengah,utara);
         for (int i=0;i<5;i++){ //cetak baris
-            for (int z=0;z<2;z++){ //cetak kolom
+            for (int z=0;z<6;z++){ //cetak kolom
                 this.buttons [i][z]= new Button();
                 tengah.add(this.buttons [i][z]); //menambahkan button
                 this.buttons[i][z].setFont(new Font("",4,40)); //memberi font button
             }
         }
         //input angka
-        for (int angka=0;angka<5;angka++){
+        for (int angka=0;angka<15;angka++){
             ngawur.add(angka);
             ngawur.add(angka);
         }
@@ -50,7 +50,7 @@ class Level1 extends Frame implements ActionListener{
         }
         a=0;
         for (int i=0;i<5;i++){ //baris
-            for (int z=0;z<2;z++){ //kolom
+            for (int z=0;z<6;z++){ //kolom
             this.buttons[i][z].setName(Integer.toString(acak[this.masukan])); //memasukkan nama button diambil dari array
             this.buttons[i][z].addActionListener(this);
             masukan++;
@@ -125,7 +125,7 @@ class Level1 extends Frame implements ActionListener{
                     akhir();
                 }
             }
-            if (matching==5 && tersisa!=0){
+            if (matching==15 && tersisa!=0){
                 endandrestart();
                 akhir();
             }
@@ -140,7 +140,7 @@ class Level1 extends Frame implements ActionListener{
         switch(jawab){
             case JOptionPane.YES_OPTION:
                 endandrestart(a);
-                tersisa=24;
+                tersisa=84;
                 perhitungan.setText("Sisa Klik : "+tersisa);
                 giliran=0;
                 clicked=0;
@@ -157,9 +157,9 @@ class Level1 extends Frame implements ActionListener{
     }
 
     //teknik overloading
-    private void endandrestart(int a){
+    private void endandrestart(int a){ //kalau mau restart
         for (int i=0;i<5;i++){ //baris
-            for (int z=0;z<2;z++){ //kolom
+            for (int z=0;z<6;z++){ //kolom
                 this.buttons[i][z].setEnabled(true);
                 this.buttons[i][z].setVisible(true);
                 this.buttons[i][z].setLabel("");
@@ -167,9 +167,9 @@ class Level1 extends Frame implements ActionListener{
         }
     }
 
-    private void endandrestart(){
+    private void endandrestart(){ //kalau game over
         for (int i=0;i<5;i++){ 
-            for (int z=0;z<2;z++){ 
+            for (int z=0;z<6;z++){ 
                 this.buttons[i][z].setEnabled(false);;
             }
         }
@@ -177,7 +177,7 @@ class Level1 extends Frame implements ActionListener{
     //teknik overloading
     private void cocok(String kotak1,String kotak2){ //kalau sama
         for (int i=0;i<5;i++){ 
-            for (int z=0;z<2;z++){ 
+            for (int z=0;z<6;z++){ 
             if(this.buttons[i][z].getLabel().equals(kotak1)){
                 this.buttons[i][z].setVisible(false);
             }
@@ -189,7 +189,7 @@ class Level1 extends Frame implements ActionListener{
     }
     private void cocok(){ //kalau gk sama
         for (int i=0;i<5;i++){ 
-            for (int z=0;z<2;z++){ 
+            for (int z=0;z<6;z++){ 
                 if(this.buttons[i][z].getLabel().equals(kotak1)){
                     this.buttons[i][z].setLabel("");
                 }

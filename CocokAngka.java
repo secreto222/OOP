@@ -10,20 +10,21 @@ class CocokAngka extends Frame{
         Panel selatan = new Panel();
         Panel tengah = new Panel();
         Panel utara = new Panel();
-        Bingkai tampil = new Bingkai();
+        //Bingkai tampil = new Bingkai();
         String angka;
-        angka=JOptionPane.showInputDialog(null, "MASUKKAN ANGKA");
-        int angka1=Integer.parseInt(angka);
-        if (angka1==1){
-            tampil.launch(2,5,selatan,tengah,utara);
-           Level1 mudah = new Level1(tengah,selatan,utara); 
-           this.dispose();   
+        angka=JOptionPane.showInputDialog(null, "PILIH LEVEL (1-3)");
+        if (angka.equals("1")){
+           //tampil.launch(2,5,selatan,tengah,utara);
+           new Level1(tengah,selatan,utara);
         }
-        //new Menu();
+        else if(angka.equals("2")){
+            new Level2(tengah, selatan, utara);
+        }
+        else if(angka.equals("3")){
+            new Level3(tengah, selatan, utara);
+        }
     }
     public static void main(String[] args) {
-        
         new CocokAngka();
-
     }
 }
